@@ -1,0 +1,30 @@
+function calcularCompra(produto, numParcelas) {
+  // Condição para compra à vista com desconto de 10%
+  if (numParcelas === 0) {
+    const valorComDesconto = produto.valor * 0.90; // Aplica o desconto de 10%
+    console.log(`Compra à vista: R$ ${valorComDesconto.toFixed(2)}`);
+  } 
+  // Condição para parcelamento sem juros de 1 a 10 vezes
+  else if (numParcelas >= 1 && numParcelas <= 10) {
+    const valorParcela = produto.valor / numParcelas;
+    console.log(`Compra parcelada em ${numParcelas}x de R$ ${valorParcela.toFixed(2)} sem juros`);
+  } 
+  // Condição para parcelamento com 2% de juros de 11 a 12 vezes
+  else if (numParcelas >= 11 && numParcelas <= 12) {
+    const valorComJuros = produto.valor * 1.02; // Aplica 2% de juros
+    const valorParcela = valorComJuros / numParcelas;
+    console.log(`Compra parcelada em ${numParcelas}x de R$ ${valorParcela.toFixed(2)} com juros`);
+  } 
+  // Condição para número de parcelas não permitido
+  else {
+    console.log("Número de parcelas não permitido.");
+  }
+}
+
+// Exemplo de uso:
+const produto = { nome: "Notebook", valor: 3000 };
+
+calcularCompra(produto, 0);   // Compra à vista com 10% de desconto
+calcularCompra(produto, 5);   // Compra parcelada em 5x sem juros
+calcularCompra(produto, 11);  // Compra parcelada em 11x com 2% de juros
+calcularCompra(produto, 13);  // Número de parcelas não permitido
